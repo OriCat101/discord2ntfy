@@ -14,8 +14,18 @@ A simple bot that forwards Discord messages from a specific channel to [Ntfy](ht
 ## Running
 
 ### Using Docker Compose (recommended)
-```sh
-docker-compose up -d
+```yaml
+services:
+  discord2ntfy:
+    image: ghcr.io/oricat101/discord2ntfy:latest
+    container_name: discord2ntfy
+    restart: unless-stopped
+    environment:
+      - DISCORD_TOKEN=[YOUR_DISCORD_BOT_TOKEN]
+      - CHANNEL_ID=[YOUR_DISCORD_CHANNEL_ID]
+      - NTFY_URL=https://ntfy.sh
+      - NTFY_TOPIC=[YOUR_NTFY_TOPIC]
+      - NTFY_PRIORITY=[1-5] # Optional, default is 3
 ```
 
 ### Running locally
